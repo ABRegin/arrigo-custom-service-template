@@ -34,7 +34,8 @@ const account = process.env.ACCOUNT || argv.account || argv.a;
 if (account === undefined) {
     throw new Error("No account provided! Try -h or -help for more info. Exiting...");
 }
-
 console.log(`account: ${account}`);
 
-module.exports = { wampdebug, key, realm, url, account }
+const projectPath = process.env.PROJECTPATH || argv.path || argv.p;
+
+module.exports = { wampdebug, key, realm, url, account, projectPath }

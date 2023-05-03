@@ -14,16 +14,15 @@ const connection = new autobahn.Connection({
     
 });
 
-const serviceName = 'arrigo-custom-service-template';
+const serviceName = 'arrigo-custom-service-task';
 
 const ns = `accounts.${ENV.account.toLowerCase()}.services.${serviceName}`;
 
 connection.onopen = async function (session) {
-    console.log("Connected, got new session!");
+    console.log("Executing the task with a WAMP connection");
+    //implement the task here
 
-    session.register(`${ns}.hello`, async (args, kwargs, details) => {
-        return "Hello from service";
-    });
+    connection.close();
 };
 
 connection.open(); 

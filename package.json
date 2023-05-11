@@ -4,8 +4,9 @@
   "description": "A boilerplate for custom service in Arrigo Local",
   "main": "index.js",
   "scripts": {
-    "start":"node index.js",
-    "dev":"nodemon index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "mqtt": "nodemon mqtt.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,9 +20,11 @@
   },
   "homepage": "https://github.com/rssoftwareab/arrigo-custom-service-template#readme",
   "dependencies": {
-    "nodemon":"^2.0.22",
     "autobahn": "^20.9.2",
+    "dotenv": "^16.0.3",
     "minimist": "^1.2.5",
-    "node-fetch": "^2.6.1"
+    "mqtt": "^4.3.7",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.22"
   }
 }

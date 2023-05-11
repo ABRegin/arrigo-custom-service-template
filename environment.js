@@ -1,4 +1,5 @@
 const fs = require('fs');
+require('dotenv').config();
 const argv = require('minimist')(process.argv.slice(2));
 
 const wampdebug = process.env.WAMPDEBUG || argv.wampdebug || argv.d || 'off';

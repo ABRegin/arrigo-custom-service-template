@@ -21,9 +21,23 @@ const ns = `accounts.${ENV.account.toLowerCase()}.services.${serviceName}`;
 connection.onopen = async function (session) {
     console.log("Connected, got new session!");
 
-    session.register(`${ns}.hello`, async (args, kwargs, details) => {
-        return "Hello from service";
-    });
+    try {
+        await session.register(`${ns}.hello`, async (args, kwargs, details) => {
+            return "Hello from service";
+        });
+    } catch (error) {
+        console.log("Exception while registering methods", error)
+        console.log("Exiting to be resurrected by the pm2 service manager");
+        process.exit(1);
+    }
 };
+
+connection.onclose = async function (reason, details) {
+    if (reason === "closed" || reason === "lost") {
+        console.log("Connection closed");
+        console.log("Exiting to be resurrected by the pm2 service manager");
+        process.exit(1);
+    }
+}
 
 connection.open(); 

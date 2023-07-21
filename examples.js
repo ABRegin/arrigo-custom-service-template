@@ -1,18 +1,24 @@
-session.register(`${ns}.mymethod`, async (args, kwargs, details) => {
+try {
+    session.register(`${ns}.mymethod`, async (args, kwargs, details) => {
+            
+        const path = args[0];
+        const sessionContext = context(session);
+
+        const pathContext = sessionContext(path);
         
-    const path = args[0];
-    const sessionContext = context(session);
+        await pathContext.state.set({data:{mydata:23,otherdata:3245}});
 
-    const pathContext = sessionContext(path);
-    
-    await pathContext.state.set({data:{mydata:23,otherdata:3245}});
+        const state = await pathContext.state.get();
 
-    const state = await pathContext.state.get();
+        const result = await session.call(`accounts.${ENV.account.toLowerCase()}.services.ssf.execute`,[path, 'mySSF'],{kwargs:{arg1:"my first argument"}, _token:kwargs.token});
 
-    const result = await session.call(`accounts.${ENV.account.toLowerCase()}.services.ssf.execute`,[path, 'mySSF'],{kwargs:{arg1:"my first argument"}, _token:kwargs.token});
+        console.log("Method callback",result, state );
 
-    console.log("Method callback",result, state );
+        return result;
 
-    return result;
-
-}, { disclose_caller: true });
+    }, { disclose_caller: true });
+} catch (error) {
+    console.log("Exception while registering methods", error)
+    console.log("Exiting to be resurrected by the pm2 service manager");
+    process.exit(1);
+}

@@ -71,13 +71,18 @@ wampConnection.onopen = async function (session) {
         })
     }
 
-    session.register(`${ns}.read`, async (args, kwargs, details) => {
-        if(args[0] && topicValueCache[args[0]])
-            return topicValueCache[args[0]];
+    try {
+        await session.register(`${ns}.read`, async (args, kwargs, details) => {
+            if(args[0] && topicValueCache[args[0]])
+                return topicValueCache[args[0]];
 
-        return topicValueCache;
-    });
-
+            return topicValueCache;
+        });
+    } catch (error) {
+        console.log("Exception while registering methods", error)
+        console.log("Exiting to be resurrected by the pm2 service manager");
+        process.exit(1);
+    }
 
 };
 

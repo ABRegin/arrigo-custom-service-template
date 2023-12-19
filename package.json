@@ -22,6 +22,7 @@
   "dependencies": {
     "autobahn": "^20.9.2",
     "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "minimist": "^1.2.5",
     "mqtt": "^4.3.7",
     "node-fetch": "^2.6.1",

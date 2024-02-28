@@ -1,14 +1,14 @@
 # arrigo-custom-service-template
  
 This repository is a service template project, a boiler plate for getting up and running with Arrigo Local custom services. 
-Please read the instructions on [Arrigo Docs](https://docs.arrigo.se/Tutorials%20and%20Snippets/Custom%20Arrigo%20Local%20Services/00_Introduction/).
+Please read the instructions on [Arrigo Docs](https://arrigodocs.regincontrols.com/Tutorials%20and%20Snippets/Custom%20Arrigo%20Local%20Services/00_Introduction/).
 
 ## License
 This project and source code is released under MIT license. 
 
 MIT License
 
-Copyright (c) 2023 RS Software AB
+Copyright (c) 2024 AB Regin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
